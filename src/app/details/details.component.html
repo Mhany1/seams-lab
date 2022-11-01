@@ -1,0 +1,95 @@
+<div style="position: relative;" class="container-fluid pt-0 mt-0"><br>
+    <div class="row justify-content-between">
+        <div class="col-lg-5 col-sm-12 col-xs-12 bgimg">
+            <small routerLink="/home" class="back ms-2"><i class="fas fa-left-long mt-3 me-1"></i>back to list</small>
+            <img class="w-100 mt-4 mainimg" [src]="viewImg" alt="">
+        </div>
+        <div *ngFor="let pro of finalProduct" class="col-lg-6 col-xs-12">
+            <p class="col-lg-2 col-3 col-xs-3 col-sm-3 mt-2 mt-sm-2 mt-lg-0 text-center tag">HOTSALE</p>
+            <h1>{{pro.title}}</h1>
+            <div style="flex-wrap: nowrap;" class="row">
+                <div class="type d-flex col-3 col-lg-3 col-sm-3 col-md-4 justify-content-around">
+                    <p>{{pro.category}}</p>
+                    <p class="ps-3"> |</p>
+                </div>
+                <div class="col-3 ms-0 d-flex justify-content-between pt-1">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star "></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <div class="col-4 col-lg-4 col-xs-3 col-md-4 d-flex rate">
+                    <small class="rate">4.21 </small>
+                    <p> (2385 review)</p>
+                </div>
+            </div>
+            <div>
+                <h5>Description:</h5>
+                <ul>
+                    <li class="des">{{pro.discraption}}</li>
+                    <li class="des">{{pro.discraption}}</li>
+                    <li class="des">{{pro.discraption}}</li>
+                </ul>
+            </div>
+            <div class="row">
+                <img (click)="changePhoto1()" #img1 class="col-2 img" src="{{pro.image_url[0]}}" alt="">
+                <img (click)="changePhoto2()" #img2 class="col-2 img" src="{{pro.image_url[1]}}" alt="">
+                <img (click)="changePhoto3()" #img3 class="col-2 img" src="{{pro.image_url[0]}}" alt="">
+            </div><br>
+            <div>
+                <h5>Size:</h5>
+                <div class="row">
+                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+                    <label class="pt-0 btn btn-outline-primary col-2 col-lg-2 col-sm-1 col-xl-1  mx-1"
+                        for="option1">15kg</label>
+
+                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                    <label class="pt-0 btn btn-outline-primary col-2 col-lg-2 col-sm-1 col-xl-1 mx-1"
+                        for="option2">12kg</label>
+
+                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+                    <label class="pt-0 btn btn-outline-primary col-2 col-lg-2 col-sm-1 col-xl-1  mx-1"
+                        for="option3">10kg</label>
+
+                    <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+                    <label class="pt-0 btn btn-outline-primary col-2 col-lg-2 col-sm-1 col-xl-1  mx-1"
+                        for="option4">7kg</label>
+                </div><br>
+                <div>
+                    <h5>Integration:</h5>
+                    <ul>
+                        <li class="int">{{pro.publisher}}</li>
+                        <li class="int">{{pro.source_url}}</li>
+                        <li class="int">{{pro.social_rank}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let pro of finalProduct" style="height: 12vh;"
+        class="row bg-light mx-lg-5 justify-content-sm-center footcart">
+        <div class=" col-5 ms-lg-2  d-flex ">
+            <div class="imgg" style="width: 17%;height: 70%;align-items: center;">
+                <img class="footimg w-100 h-100 my-2" src="{{pro.image_url[0]}}" alt="">
+            </div>
+            <div class="pt-2 ps-4">
+                <p class="mb-0 pb-0 titlee">{{pro.title}}</p>
+                <p class="foottype mt-0 pt-0">{{pro.category}}</p>
+            </div>
+        </div>
+
+
+        <div style="align-items: center;" class="col-lg-4 col-3 d-flex justify-content-around calculate">
+            <p class="quit pt-2">Qity:</p>
+            <a><i (click)="addOne(pro)" class="fas fa-plus footicon"></i></a>
+            <input [(ngModel)]="amount" class="col-2 inputnum " type="number" min="1">
+            <a><i (click)="removeOne(pro)" class="fas fa-minus footicon"></i></a>
+        </div>
+
+        <div class="col-lg-2 col-3 col-md-2  pt-0 justify-content-center pt-lg-3 pt-sm-2">
+            <button #btn class="footbtn w-100 py-lg-2 py-sm-2 py-0" (click)="checkbtn();addItem(pro)">Add to
+                cart</button>
+        </div>
+    </div>
+</div>

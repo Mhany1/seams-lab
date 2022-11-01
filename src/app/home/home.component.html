@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <h4 class="shopka navbar-brand">Shopka</h4>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+      aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <p class="alltext">sell on shopka</p>
+        </li>
+        <li class="nav-item">
+          <p (click)="logout()" class="alltext alltext2 logout mx-lg-5">Log out</p>
+        </li>
+        <div class="d-flex ms-lg-5 allsearch">
+          <button (click)="searchData()" class="btnseach h-75"><i class="fab fa-sistrix px-4 ser"></i></button>
+          <input [(ngModel)]="searchValue" class="search col-lg-12 h-75" type="search" placeholder="Search...">
+        </div>
+        <li class="nav-item ms-lg-5 ps-lg-5">
+          <p class="customer" style="color: #2264d1;">Customer Electronics</p>
+        </li>
+      </ul>
+      <div class="col-2 d-flex justify-content-between">
+        <button class="btnfooter1 px-lg-2 px-sm-2" routerLink="/login">Sign in</button>
+        <button class="btnfooter2 px-lg-2">My cart
+          <span class="position-absolute top-0 start-85 translate-middle badge rounded-pill bg-danger">
+            {{Larr.length}}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-6 col-lg-3 col-xs-10">
+      <section class="justify-content-center d-flex bg-light py-3">
+        <form [formGroup]="form" novalidate>
+          <div *ngFor="let slide of category; let i=index" class="pt-0">
+            <div class="title">
+              <input #section1 class="form-check-input me-5" name="flexRadioDefault" type="radio"
+                formArrayName="category" [value]="slide.value" (change)="onCheckboxChange($event)" />
+              <label> {{slide.name}}</label>
+            </div>
+          </div>
+        </form>
+      </section>
+      <br>
+      <section class="justify-content-center d-flex bg-light py-3">
+        <form [formGroup]="formprice" novalidate>
+          <div *ngFor="let slide of price; let i=index" class="">
+            <div class="title">
+              <input class="form-check-input" name="flexRadioDefault" type="radio" formArrayName="price"
+                [value]="slide.value" (change)="onCheckboxChangePrice($event)" />
+              <label for="">{{ slide.name}}</label>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="col-6 col-lg-9">
+      <div class="row justify-content-center maindata">
+        <div *ngFor="let pro of viewData | filter:currentValue | filtercategory:categoryValue"
+          class="card mx-2 my-3 allcard" style="width: 15rem;">
+          <img src="{{pro.image_url[0]}}" class="card-img-top" alt="...">
+          <div class="card-body mb-0 pb-0">
+            <p class="card-title title">{{pro.title}}</p>
+            <div class="d-flex justify-content-between">
+              <h4 class="price">${{pro.price}}</h4>
+              <p *ngIf="pro.bestSeller" class="off p-1 px-2 mt-1">15% OFF</p>
+            </div>
+            <p class="text">{{pro.discraption}}</p>
+          </div>
+          <div class=" card-footer bg-white foot d-flex justify-content-between mt-0 pt-0">
+            <div class="">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star "></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <small class="rate ps-2">4.21</small>
+            </div>
+            <button routerLink="/details/{{pro.recipe_id}}" class="btnn px-2"><i class="fas fa-heart icon"></i>
+              Watch</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<main class="container bg-back">
+	<div class="row">
+		<div class="col-12 col-lg-6">
+			<img class='h-100 w-100' src="../assets/images/com.jpg" alt="">
+		</div>
+		<div class="col-12 col-lg-6 ms-0 p-0">
+			<div class="card">
+				<div class="login-box ms-0">
+					<div class="login-snip">
+						<h1 class="text-center">Shopka</h1><br>
+						<div class="login-space mt-1">
+							<form [formGroup]="loginForm" novalidate>
+								<div class="login">
+									<div class="group">
+										<label for="pass" class="label">Email Address*</label>
+										<input id="pass" type="text" class="input"
+											placeholder="Enter your email address" formControlName="email" #emailAddress
+											[class.is-invalid]="email?.invalid &&email?.touched" />
+										<div style="z-index: 99999;" class="text-danger"
+											*ngIf="(email?.invalid &&email?.touched)||email?.dirty">
+											<small class="text-danger"
+												*ngIf="email?.errors?.['required']">required</small>
+											<small class="text-danger" *ngIf="email?.errors?.['pattern']"> Email is
+												incorrect</small>
+										</div>
+									</div>
+									<div class="group">
+										<label for="pass" class="label">Password*</label>
+										<input id="pass" type="password" class="input" data-type="password"
+											#userPassword placeholder="Enter your password" matInput
+											formControlName="password" />
+									</div><br>
+									<div class="group">
+										<input routerLink="/home" (click)="login()" type="submit" class="button fs-6"
+											value="Login" [disabled]="loginForm.invalid"
+											[class.btn-danger]="loginForm.invalid" />
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
